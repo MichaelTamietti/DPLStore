@@ -4,9 +4,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
-!/log/.keep
-!/tmp/.keep
-/client/public/**
+/public/**
 /client/node_modules/**
 
 .byebug_history
