@@ -1,5 +1,5 @@
 class Api::ProductsController < ApplicationController
-  before_action :set_product, only: [:update, :destroy] 
+  before_action :set_product, only: [:update, :destroy]
 
   def index
     render json: Product.all
@@ -11,9 +11,10 @@ class Api::ProductsController < ApplicationController
       render json: product
     else
       render json: { errors: product.errors }
+    end
   end
 
-  def update 
+  def update
     render json: @product
   end
 
