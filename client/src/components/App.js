@@ -9,6 +9,7 @@ import Products from './store_pages/Products';
 import Cart from './store_pages/Cart';
 import Contact from './store_pages/Contact';
 import Dashboard from './admin_pages/Dashboard';
+import FetchProducts from './admin_pages/FetchProducts';
 import Orders from './admin_pages/Orders';
 import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
@@ -29,6 +30,7 @@ class App extends Component {
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
             <ProtectedRoute exact path='/dashboard' component={Dashboard} />
+            <ProtectedRoute exact path='/admin-products' component={FetchProducts} />
             <ProtectedRoute exact path='/orders' component={Orders} />
             <Route component={NoMatch} />
           </Switch>

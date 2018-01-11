@@ -17,22 +17,29 @@ class NavBar extends Component {
       return (
         <Menu pointing secondary compact size='massive'>
           <Link to='/dashboard'>
-            <Menu.Item 
-              name='Dashboard' 
-              active={activeItem === 'Dashboard'} 
-              onClick={this.handleItemClick} 
+            <Menu.Item
+              name='Dashboard'
+              active={activeItem === 'Dashboard'}
+              onClick={this.handleItemClick}
+            />
+          </Link>
+          <Link to='/admin-products'>
+            <Menu.Item
+              name='Products'
+              active={activeItem === 'Products'} 
+              onClick={this.handleItemClick}
             />
           </Link>
           <Link to='/orders'>
-            <Menu.Item 
-              name='Orders' 
-              active={activeItem === 'Order'} 
-              onClick={this.handleItemClick} 
+            <Menu.Item
+              name='Orders'
+              active={activeItem === 'Order'}
+              onClick={this.handleItemClick}
             />
           </Link>
-          <Menu.Item 
-            name='Logout' 
-            onClick={() => dispatch(handleLogout(history))} 
+          <Menu.Item
+            name='Logout'
+            onClick={() => dispatch(handleLogout(history))}
           />
         </Menu>
       );
@@ -41,24 +48,24 @@ class NavBar extends Component {
     return (
       <Menu pointing secondary compact size='massive'>
         <Link to='/'>
-          <Menu.Item 
-            name='Products' 
-            active={activeItem === 'Products'} 
-            onClick={this.handleItemClick} 
+          <Menu.Item
+            name='Products'
+            active={activeItem === 'Products'}
+            onClick={this.handleItemClick}
           />
         </Link>
         <Link to='/Cart'>
-          <Menu.Item 
-            name='Cart' 
-            active={activeItem === 'Cart'} 
-            onClick={this.handleItemClick} 
+          <Menu.Item
+            name='Cart'
+            active={activeItem === 'Cart'}
+            onClick={this.handleItemClick}
           />
         </Link>
         <Link to='/Contact'>
-          <Menu.Item 
-            name='Contact' 
-            active={activeItem === 'Contact'} 
-            onClick={this.handleItemClick} 
+          <Menu.Item
+            name='Contact'
+            active={activeItem === 'Contact'}
+            onClick={this.handleItemClick}
           />
         </Link>
       </Menu>
