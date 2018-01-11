@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Form } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addProduct } from '../../actions/products';
 

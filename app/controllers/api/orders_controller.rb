@@ -11,6 +11,7 @@ class Api::OrdersController < ApplicationController
       render json: order
     else
       render json: { errors: order.errors }
+    end
   end
 
   def update 
