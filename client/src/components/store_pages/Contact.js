@@ -32,28 +32,24 @@ class Contact extends Component {
                 placeholder='Name' 
                 required 
                 name='name' 
-                value={name} 
-              />     
+              />  
               <Form.Input 
                 label='Email' 
                 placeholder='Email' 
                 required 
                 name='email' 
-                value={email}
               />
               <Form.Input 
                 label='Subject' 
                 placeholder='Subject' 
                 required 
                 name='subject' 
-                value={subject}
               />
               <Form.TextArea 
                 label='Message' 
                 placeholder='Message' 
                 required 
                 name='message' 
-                value={message}
               />
               <Form.Checkbox label='I agree to the Terms and Conditions' />
               <Button type='submit'>Submit</Button>
