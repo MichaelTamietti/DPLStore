@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Product from './Product';
+import AddProductForm from './AddProductForm';
 
 class Products extends Component {
 
@@ -15,6 +16,8 @@ class Products extends Component {
     return(
       <div>
       Products Component
+      <AddProductForm type='add' />
+      <hr/>
       { this.getAllProducts() }
       </div>
     )
