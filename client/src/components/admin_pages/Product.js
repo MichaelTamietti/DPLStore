@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Button, Modal, Header, Image } from 'semantic-ui-react';
+import Placeholder from '../../images/placeholder.png';
 
 class Product extends Component {
   state = { open: false }
@@ -23,8 +24,8 @@ class Product extends Component {
               <Header>{name}</Header>
               <p>${price}</p>
               <p>{description}</p>
-              <p>Style:{style}</p>
-              <p>Sizes:{size}</p>
+              <p>Style: {style}</p>
+              <p>Sizes: {size}</p>
             </Modal.Description>
           </Modal.Content>
         </Modal>
