@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export const GET_PRODUCT = 'GET_PRODUCT';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 
 export const addProduct = (product) => {
   return(dispatch) => {
@@ -32,5 +33,20 @@ export const getProducts = (cb) => {
         dispatch(setHeaders(err.headers));
         dispatch(setFlash(message, 'red'));
       })
+  }
+}
+
+export const deleteProduct = (id) => {
+  return(dispatch) => {
+   axios.delete(`/api/products/${id}`)
+    .then( res => {
+      const { headers } = res;
+      dispatch({ type: DELETE_PRODUCT, id, headers });
+    })
+    .catch( err => {
+      const message = err.response.data.errors;
+      dispatch(setHeaders(err.headers));
+      dispatch(setFlash(message, 'red'));
+    })
   }
 }

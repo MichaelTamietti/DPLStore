@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Button, Modal, Header, Image, Card, Icon, Grid } from 'semantic-ui-react';
+import { Form, Button, Modal, Header, Image, Card, Icon, Grid, Confirm } from 'semantic-ui-react';
 import Placeholder from '../../images/placeholder.png';
+import { deleteProduct } from '../../actions/products';
 
 class Product extends Component {
   state = { open: false }
 
+  show = () => this.setState({ open: true });
+
+  handleConfirm = () => {
+    const { dispatch, product: { id } } = this.props;
+    dispatch(deleteProduct(id));
+    this.setState({ open: false });
+  }
+
+  handleCancel = () => this.setState({ open: false });
+
   show = dimmer => () => this.setState({ dimmer, open: true })
+
   close = () => this.setState({ open: false })
 
   render() {
@@ -36,7 +48,7 @@ class Product extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button color='red' inverted >
+            <Button onClick={this.handleConfirm} color='red' inverted >
               <Icon name='remove' color='red' /> Delete
             </Button>
             <Button color='yellow' inverted>
