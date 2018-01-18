@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Product from './Product';
 import AddProductForm from './AddProductForm';
+import { Card, Container, Grid } from 'semantic-ui-react';
 
 class Products extends Component {
 
@@ -15,10 +16,17 @@ class Products extends Component {
   render() {
     return(
       <div>
-      Products Component
-      <AddProductForm type='add' />
-      <hr/>
-      { this.getAllProducts() }
+        <Grid>
+          <Grid.Column width={3}>
+          </Grid.Column>
+          <Grid.Column width={10}>
+            <AddProductForm type='add' />
+            <br />
+            <Card.Group itemsPerRow={5}>
+              { this.getAllProducts() }
+            </Card.Group>
+          </Grid.Column>
+        </Grid>
       </div>
     )
   }

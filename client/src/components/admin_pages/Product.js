@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Button, Modal, Header, Image, Icon } from 'semantic-ui-react';
+import { Form, Button, Modal, Header, Image, Card, Icon, Grid } from 'semantic-ui-react';
 import Placeholder from '../../images/placeholder.png';
 
 class Product extends Component {
@@ -15,11 +15,18 @@ class Product extends Component {
 
     return (
       <div>
-        <Button onClick={this.show('blurring')}>{name}</Button>
+        <Card as='button' onClick={this.show('blurring')}>
+          <Image src={ Placeholder } />
+          <Card.Content>
+           <Card.Header>
+             {name}
+           </Card.Header>
+          </Card.Content>
+        </Card>
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>{name}</Modal.Header>
           <Modal.Content image>
-            <Image wrapped size='medium' src='paperclip' />
+            <Image wrapped size='medium' src='Placeholder' />
             <Modal.Description>
               <Header>{name}</Header>
               <p>${price}</p>
