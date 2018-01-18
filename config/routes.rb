@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :products, except: [:new, :edit]
     resources :orders, except: [:new, :edit]
   end
+  
+  resources "contacts", only: [:create]
 
   #Do not place any routes below this one
   get '*other', to: 'static#index'

@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import { Form, Button, Grid, Card } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { sendMessage } from '../../actions/messages';
 
 class Contact extends Component {
-  state = { name: '', email: '', subject: '', message: '' }
+  defaults = { name: '', email: '', subject: '', message: '' };
+  state = { ...this.defaults };
   
-  // handleChange = (e, { name, value }) => this.setState({ [name]: value })
-  
-  // handleSubmit = () => {
-    //   const { name, email } = this.state
+  handleChange = (e, data) => {
+    const { name, value } = data;
+    this.setState({ [name]: value });
+  }  
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { type, dispatch } = this.props;
+    dispatch(sendMessage(this.state))
+    this.setState(this.defaults);
+  }
     
-    //   this.setState({ submittedName: name, submittedEmail: email })
-    // }
-    
-    render() {
+  render() {
     const { name, email, subject, message } =  this.state
     return (
       <Grid>
@@ -26,30 +33,38 @@ class Contact extends Component {
             </Card.Header>
           </Card.Content>
           <Card.Content>
-            <Form size='large'>
+            <Form size='large' onSubmit={this.handleSubmit}>
               <Form.Input 
                 label='Name' 
                 placeholder='Name' 
                 required 
-                name='name' 
+                name='name'
+                value={name}
+                onChange={(e, data) => this.handleChange(e, data)} 
               />  
               <Form.Input 
                 label='Email' 
                 placeholder='Email' 
                 required 
-                name='email' 
+                name='email'
+                value={email}
+                onChange={(e, data) => this.handleChange(e, data)} 
               />
               <Form.Input 
                 label='Subject' 
                 placeholder='Subject' 
                 required 
-                name='subject' 
+                name='subject'
+                value={subject}
+                onChange={(e, data) => this.handleChange(e, data)} 
               />
               <Form.TextArea 
                 label='Message' 
                 placeholder='Message' 
                 required 
-                name='message' 
+                name='message'
+                value={message}
+                onChange={(e, data) => this.handleChange(e, data)} 
               />
               <Form.Checkbox label='I agree to the Terms and Conditions' />
               <Button type='submit'>Submit</Button>
@@ -62,4 +77,4 @@ class Contact extends Component {
   }
 }
 
-export default Contact;
+export default connect()(Contact);

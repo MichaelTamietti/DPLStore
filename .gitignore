@@ -7,5 +7,6 @@
 /tmp/**
 /public/**
 /client/node_modules/**
+.env
 
 .byebug_history

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Button, Modal, Header, Image } from 'semantic-ui-react';
+import { Form, Button, Modal, Header, Image, Icon } from 'semantic-ui-react';
 import Placeholder from '../../images/placeholder.png';
 
 class Product extends Component {
@@ -28,6 +28,14 @@ class Product extends Component {
               <p>Sizes: {size}</p>
             </Modal.Description>
           </Modal.Content>
+          <Modal.Actions>
+            <Button color='red' inverted >
+              <Icon name='remove' color='red' /> Delete
+            </Button>
+            <Button color='yellow' inverted>
+              <Icon name='edit' color='yellow' /> Edit
+            </Button>
+          </Modal.Actions>
         </Modal>
       </div>
     )
