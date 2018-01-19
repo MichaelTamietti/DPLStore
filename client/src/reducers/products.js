@@ -13,6 +13,7 @@ const products = ( state = [], action ) => {
       return [...action.products]
     case DELETE_PRODUCT:
       return state.filter( c => c.id !== action.id )
+      return [...action.products] 
     case EDIT_PRODUCT:
       return state.map( c => {
         if (c.id === action.product.id)
