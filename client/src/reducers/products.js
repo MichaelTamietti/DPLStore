@@ -2,6 +2,7 @@ import {
   ADD_PRODUCT,
   GET_PRODUCT,
   DELETE_PRODUCT,
+  EDIT_PRODUCT,
 } from '../actions/products'
 
 const products = ( state = [], action ) => {
@@ -12,6 +13,12 @@ const products = ( state = [], action ) => {
       return [...action.products]
     case DELETE_PRODUCT:
       return state.filter( c => c.id !== action.id )
+    case EDIT_PRODUCT:
+      return state.map( c => {
+        if (c.id === action.product.id)
+          return action.product
+        return c 
+      }) 
     default:
       return state;
   }

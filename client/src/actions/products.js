@@ -6,6 +6,7 @@ import axios from 'axios';
 export const GET_PRODUCT = 'GET_PRODUCT';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 
 export const addProduct = (product) => {
   return(dispatch) => {
@@ -50,3 +51,17 @@ export const deleteProduct = (id) => {
     })
   }
 }
+export const editProduct = (product, id) => {
+  return(dispatch) => {
+    axios.put(`/api/products/${id}`, product)
+      .then( res => {
+        dispatch({ type: EDIT_PRODUCT, product: res.data})
+      })
+      .catch( err => {
+        const message = err.resonse.data.errors;
+        dispatch(setHeaders(err.headers));
+        dispatch(setFlash(message, 'red'));
+      })
+  }
+}
+

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Form, Button, Modal, Header, Image, Card, Icon, Grid, Confirm } from 'semantic-ui-react';
 import Placeholder from '../../images/placeholder.png';
 import { deleteProduct } from '../../actions/products';
+import AddProductForm from './AddProductForm';
 
 class Product extends Component {
   state = { open: false }
@@ -21,8 +22,15 @@ class Product extends Component {
 
   close = () => this.setState({ open: false })
 
+  editform = (product) => {
+    return(
+      <AddProductForm product={product} type='edit'/>
+    )
+  }
+
   render() {
     const { name, price, description, style, size } = this.props.product;
+    const { product } = this.props;
     const { open, dimmer } = this.state
 
     return (
@@ -48,12 +56,14 @@ class Product extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button onClick={this.handleConfirm} color='red' inverted >
-              <Icon name='remove' color='red' /> Delete
-            </Button>
-            <Button color='yellow' inverted>
-              <Icon name='edit' color='yellow' /> Edit
-            </Button>
+            <Grid divided='vertically'>
+              <Grid.Column width='8'>
+              </Grid.Column>
+              <Button onClick={this.handleConfirm} color='red' inverted >
+                <Icon name='remove' color='red' /> Delete
+              </Button>
+              <AddProductForm product={product} type='edit' onClick={this.close}/>
+            </Grid>
           </Modal.Actions>
         </Modal>
       </div>

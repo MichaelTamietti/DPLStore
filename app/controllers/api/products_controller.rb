@@ -14,8 +14,12 @@ class Api::ProductsController < ApplicationController
     end
   end
 
-  def update
-    render json: @product
+  def update 
+    if @product.update(product_params)
+      render json: @product
+    else
+      render json: { errors: @product.errors }
+    end
   end
 
   def destroy
