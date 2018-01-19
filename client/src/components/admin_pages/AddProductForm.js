@@ -32,6 +32,7 @@ class AddProductForm extends Component {
   }
 
   show = dimmer => () => this.setState({ dimmer, open: true })
+  
   close = () => this.setState({ open: false })
 
   render() {

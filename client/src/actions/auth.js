@@ -18,7 +18,7 @@ export const registerUser = (email, password, passwordConfirmation, history) => 
         const { data: { data: user }, headers } = res;
         dispatch(login(user));
         dispatch(setHeaders(headers));
-        history.push('/');
+        history.push('/admin-products');
       })
       .catch(res => {
         const messages =
@@ -59,7 +59,7 @@ export const handleLogin = (email, password, history) => {
         const { data: { data: user }, headers } = res;
         dispatch(setHeaders(headers));
         dispatch(login(user));
-        history.push('/');
+        history.push('/admin-products');
       })
       .catch(res => {
         const messages =

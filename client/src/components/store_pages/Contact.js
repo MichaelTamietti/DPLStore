@@ -71,7 +71,7 @@ class Contact extends Component {
             </Form>
           </Card.Content>
         </Card>
-      </Grid.Column>
+        </Grid.Column>
       </Grid>
     );
   }
