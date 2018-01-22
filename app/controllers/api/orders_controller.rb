@@ -15,7 +15,11 @@ class Api::OrdersController < ApplicationController
   end
 
   def update 
-    render json: @order
+    if @order.update(product_params)
+      render json: @order
+    else
+      render json: { errors: @order.errors }
+    end
   end
 
   def destroy
