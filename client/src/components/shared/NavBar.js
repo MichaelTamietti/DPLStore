@@ -26,7 +26,7 @@ class NavBar extends Component {
           <Link to='/admin-products'>
             <Menu.Item
               name='Products'
-              active={activeItem === 'Products'} 
+              active={activeItem === 'Products'}
               onClick={this.handleItemClick}
             />
           </Link>
@@ -58,6 +58,13 @@ class NavBar extends Component {
           <Menu.Item
             name='Cart'
             active={activeItem === 'Cart'}
+            onClick={this.handleItemClick}
+          />
+        </Link>
+        <Link to='/Checkout'>
+          <Menu.Item
+            name='Checkout'
+            active={activeItem === 'Checkout'}
             onClick={this.handleItemClick}
           />
         </Link>

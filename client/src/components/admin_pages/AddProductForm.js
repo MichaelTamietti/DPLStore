@@ -6,19 +6,16 @@ import { addProduct, editProduct } from '../../actions/products';
 class AddProductForm extends Component {
   defaults = { name: '', price: 0.0, style: '', size: '', description: '', open: false };
   state = { ...this.defaults };
-
   componentDidMount(){
     if(this.props.type === 'edit' && this.props.product){
-      const { name , price, style, size, description } = this.props.product;
+      const { name, price, style, size, description } = this.props.product;
       this.setState({ name, price, style, size, description })
     }
   }
-
   handleChange = (e, data) => {
     const { name, value } = data;
     this.setState({ [name]: value });
   }
-
   handleSubmit = (e) => {
     e.preventDefault();
     const { type, dispatch } = this.props;
@@ -30,11 +27,9 @@ class AddProductForm extends Component {
     }
     this.setState(this.defaults);
   }
-
   show = dimmer => () => this.setState({ dimmer, open: true })
-  
-  close = () => this.setState({ open: false })
 
+  close = () => this.setState({ open: false })
   render() {
     const { name, price, style, size, description } = this.state
     const { open, dimmer } = this.state
@@ -153,5 +148,4 @@ class AddProductForm extends Component {
     )
   }
 }
-
 export default connect()(AddProductForm);
