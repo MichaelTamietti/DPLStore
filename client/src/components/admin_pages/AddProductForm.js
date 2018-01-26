@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { Form, Button, Modal, Header, Image, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addProduct, editProduct } from '../../actions/products';
+import Dropzone from 'react-dropzone';
 
 class AddProductForm extends Component {
-  defaults = { name: '', price: 0.0, style: '', size: '', description: '', open: false };
+  defaults = { name: '', price: 0.0, style: '', size: '', description: '', open: false, file: {}, images: [] };
   state = { ...this.defaults };
   componentDidMount(){
     if(this.props.type === 'edit' && this.props.product){
-      const { name, price, style, size, description } = this.props.product;
-      this.setState({ name, price, style, size, description })
+      const { name , price, style, size, description, images } = this.props.product;
+      this.setState({ name, price, style, size, description, images })
     }
   }
   handleChange = (e, data) => {
@@ -19,8 +20,8 @@ class AddProductForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { type, dispatch } = this.props;
-    const { id } = this.props.product;
     if(type === 'edit'){
+      const { id } = this.props.product;
       dispatch(editProduct(this.state, id));
     } else {
       dispatch(addProduct(this.state));
@@ -30,10 +31,17 @@ class AddProductForm extends Component {
   show = dimmer => () => this.setState({ dimmer, open: true })
 
   close = () => this.setState({ open: false })
+
+  onDrop = (files) => {
+    this.setState({
+      file: files[0]
+    });
+  }
+
   render() {
-    const { name, price, style, size, description } = this.state
+    const { name, price, style, size, description, images } = this.state
     const { open, dimmer } = this.state
-    
+
     if(this.props.type === 'edit') {
       return (
         <div>
@@ -85,6 +93,13 @@ class AddProductForm extends Component {
                     value={description}
                     onChange={(e, data) => this.handleChange(e, data)}
                   />
+                  <Dropzone onDrop={this.onDrop}>
+                    <p>Try dropping some files here, or click to select files to upload.</p>
+                  </Dropzone>
+                  {
+                    this.state.file &&
+                      <Image src={this.state.file.preview} size='large' />
+                  }
                   <Form.Button>Submit</Form.Button>
                 </Form>
               </Modal.Description>
@@ -140,6 +155,13 @@ class AddProductForm extends Component {
                   value={description}
                   onChange={(e, data) => this.handleChange(e, data)}
                 />
+                <Dropzone onDrop={this.onDrop}>
+                  <p>Try dropping some files here, or click to select files to upload.</p>
+                </Dropzone>
+                {
+                  this.state.file &&
+                    <Image src={this.state.file.preview} size='large' />
+                }
                 <Form.Button>Submit</Form.Button>
               </Form>
             </Modal.Description>

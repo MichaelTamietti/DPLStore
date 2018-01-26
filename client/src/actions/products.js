@@ -8,9 +8,24 @@ export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 
+const axiosConfigs = {
+  headers: { 'content-type': 'multipart/form-data' }
+}
+
 export const addProduct = (product) => {
   return(dispatch) => {
-   axios.post(`/api/products`, {product} )
+    let formData = new FormData();
+
+    Object.keys(product).forEach( key => {
+      formData.append(key, product[key])
+    })
+    // product.files.forEach( file => {
+    //   console.log(file)
+    //   formData.append(file.name, file)
+    // })
+    // console.log(formData)
+
+   axios.post(`/api/products`, formData, axiosConfigs)
     .then( ({ data, headers }) => {
       dispatch({ type: ADD_PRODUCT, product: data, headers });
     })
@@ -53,7 +68,13 @@ export const deleteProduct = (id) => {
 }
 export const editProduct = (product, id) => {
   return(dispatch) => {
-    axios.put(`/api/products/${id}`, product)
+    let formData = new FormData();
+
+    Object.keys(product).forEach( key => {
+      formData.append(key, product[key])
+    })
+
+    axios.put(`/api/products/${id}`, product, formData, axiosConfigs)
       .then( res => {
         dispatch({ type: EDIT_PRODUCT, product: res.data})
       })
@@ -64,4 +85,3 @@ export const editProduct = (product, id) => {
       })
   }
 }
-

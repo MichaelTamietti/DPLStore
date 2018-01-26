@@ -6,7 +6,20 @@ class Api::ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
+    product = Product.new
+    product.name = params[:name]
+    product.price = params[:price]
+    product.style = params[:style]
+    product.size = params[:size]
+    product.description = params[:description]
+    auth = {
+      cloud_name: ENV["CLOUD_NAME"],
+      api_key:    ENV["CLOUD_API_KEY"],
+      api_secret: ENV["CLOUD_API_SECRET"]
+    }
+    image = Cloudinary::Uploader.upload(params[:file].tempfile, auth)
+    product.images << image["secure_url"]
+
     if product.save
       render json: product
     else
@@ -14,7 +27,7 @@ class Api::ProductsController < ApplicationController
     end
   end
 
-  def update 
+  def update
     if @product.update(product_params)
       render json: @product
     else
@@ -30,7 +43,7 @@ class Api::ProductsController < ApplicationController
   private
 
     def product_params
-      params.require(:product).permit(:name, :price, :description, :style, :size)
+      params.require(:product).permit(:name, :price, :description, :style, :size, :images)
     end
 
     def set_product

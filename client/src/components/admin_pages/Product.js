@@ -29,14 +29,14 @@ class Product extends Component {
   }
 
   render() {
-    const { name, price, description, style, size } = this.props.product;
+    const { name, price, description, style, size, images } = this.props.product;
     const { product } = this.props;
-    const { open, dimmer } = this.state
+    const { open, dimmer } = this.state;
 
     return (
       <div>
         <Card as='button' onClick={this.show('blurring')}>
-          <Image src={ Placeholder } />
+          <Image src={ images } />
           <Card.Content>
            <Card.Header>
              {name}
@@ -46,7 +46,7 @@ class Product extends Component {
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>{name}</Modal.Header>
           <Modal.Content image>
-            <Image wrapped size='medium' src='Placeholder' />
+            <Image wrapped size='medium' src={images} />
             <Modal.Description>
               <Header>{name}</Header>
               <p>${price}</p>
@@ -68,6 +68,9 @@ class Product extends Component {
         </Modal>
       </div>
     )
+
+
+
   }
 }
 
