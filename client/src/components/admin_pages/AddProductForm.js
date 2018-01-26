@@ -33,6 +33,7 @@ class AddProductForm extends Component {
   render() {
     const { name, price, style, size, description } = this.state
     const { open, dimmer } = this.state
+    
     if(this.props.type === 'edit') {
       return (
         <div>

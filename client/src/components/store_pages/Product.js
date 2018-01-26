@@ -5,14 +5,14 @@ import Placeholder from '../../images/placeholder.png';
 import { deleteProduct } from '../../actions/products';
 
 class Product extends Component {
-  state = { open: false }
+  state = { open: false, cart: [] }
 
   show = () => this.setState({ open: true });
 
   show = dimmer => () => this.setState({ dimmer, open: true })
 
   close = () => this.setState({ open: false })
-
+ 
   render() {
     const { name, price, description, style, size } = this.props.product;
     const { open, dimmer } = this.state
@@ -43,6 +43,9 @@ class Product extends Component {
                 </Modal.Description>
               </Modal.Content>
               <Modal.Actions>
+                <Button>
+                  <Icon name='in cart' />Add To Cart
+                </Button>
               </Modal.Actions>
             </Modal>
           </Reveal.Content>
