@@ -24,6 +24,7 @@ class Products extends Component {
     if (this.state.loaded) {
       return (
         <Container>
+          <br />
           <Grid columns='three' relaxed='very' centered stackable>
             <Grid.Row>
               {this.getAllProducts()}

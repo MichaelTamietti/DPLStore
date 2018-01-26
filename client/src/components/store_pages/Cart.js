@@ -20,9 +20,22 @@ const styles = {
     float: 'right',
     fontSize: '13px',
     lineHeight: '20px',
-  }
+  }, 
 
-
+  styleButton: {
+    border: '2px solid #000000',
+    color: '#000000',
+    display: 'block',
+    margin: '25px auto',
+    width: '140px',
+    fontSize: '10px',
+    textTransform: 'uppercase',
+    letterSpacing: '2px',
+    textDecoration: 'none',
+  },
+  link: {
+    color: '#000000',
+  }, 
 }
 
 class Cart extends Component {
@@ -34,6 +47,7 @@ class Cart extends Component {
   render() {
     return (
       <Container>
+        <br />
         <Header as='h1' textAlign='center'>Cart</Header>
         <Grid columns={2} relaxed='very' centered>
           <Grid.Row stretched>
@@ -58,9 +72,9 @@ class Cart extends Component {
                   <Item.Header>Total: <span style={styles.money}>$0.00</span></Item.Header>
                 </Item.Content>
                 <Item.Content style={styles.checkoutBoxItems} verticalAlign='middle'>
-                  <button>Checkout</button>
+                  <button style={styles.styleButton}>Checkout</button>
                 </Item.Content>
-                <Link to='/'>Continue Shopping</Link>
+                <button style={styles.styleButton}><Link to='/' style={styles.link}>Continue Shopping</Link></button>
               </Item>
             </Grid.Column>
           </Grid.Row>

@@ -17,6 +17,7 @@ const styles = {
     letterSpacing: '2px',
   }
 }
+
 class Footer extends Component {
 
   ifAdminFooter = () => {

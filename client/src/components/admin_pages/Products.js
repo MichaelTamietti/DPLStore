@@ -15,9 +15,8 @@ class Products extends Component {
 
   render() {
     return(
-      <div>
-        <Grid stackable colums='three' centered >
-          <br/>
+      <Container>
+        <Grid stackable columns='three' centered >
           <Grid.Row>
             <AddProductForm type='add' />
           </Grid.Row>
@@ -25,7 +24,7 @@ class Products extends Component {
             { this.getAllProducts() }
           </Grid.Row>
         </Grid>
-      </div>
+      </Container>
     )
   }
 }

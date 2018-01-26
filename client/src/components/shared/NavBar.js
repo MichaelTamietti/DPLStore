@@ -4,6 +4,17 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../../actions/auth';
 
+const styles = {
+  styleButton: {
+    color: '#000000',
+    display: 'block',
+    margin: '35px  20px',
+    width: '100px',
+    fontSize: '10px',
+    textTransform: 'uppercase',
+    letterSpacing: '2px',
+  }
+}
 class NavBar extends Component {
   state = { activeItem: 'Products' }
 
@@ -16,21 +27,21 @@ class NavBar extends Component {
     if (user.id) {
       return (
         <Menu pointing secondary compact size='massive'>
-          <Link to='/dashboard'>
+          <Link to='/dashboard' style={styles.styleButton}>
             <Menu.Item
               name='Dashboard'
               active={activeItem === 'Dashboard'}
               onClick={this.handleItemClick}
             />
           </Link>
-          <Link to='/admin-products'>
+          <Link to='/admin-products' style={styles.styleButton}>
             <Menu.Item
               name='Products'
               active={activeItem === 'Products'}
               onClick={this.handleItemClick}
             />
           </Link>
-          <Link to='/orders'>
+          <Link to='/orders' style={styles.styleButton}>
             <Menu.Item
               name='Orders'
               active={activeItem === 'Order'}
@@ -47,28 +58,28 @@ class NavBar extends Component {
 
     return (
       <Menu pointing secondary compact size='massive'>
-        <Link to='/'>
+        <Link to='/' style={styles.styleButton}>
           <Menu.Item
             name='Products'
             active={activeItem === 'Products'}
             onClick={this.handleItemClick}
           />
         </Link>
-        <Link to='/Cart'>
+        <Link to='/Cart' style={styles.styleButton}>
           <Menu.Item
             name='Cart'
             active={activeItem === 'Cart'}
             onClick={this.handleItemClick}
           />
         </Link>
-        <Link to='/Checkout'>
+        <Link to='/Checkout' style={styles.styleButton}>
           <Menu.Item
             name='Checkout'
             active={activeItem === 'Checkout'}
             onClick={this.handleItemClick}
           />
         </Link>
-        <Link to='/Contact'>
+        <Link to='/Contact' style={styles.styleButton}>
           <Menu.Item
             name='Contact'
             active={activeItem === 'Contact'}
