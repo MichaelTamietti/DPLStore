@@ -16,16 +16,14 @@ class Products extends Component {
   render() {
     return(
       <div>
-        <Grid>
-          <Grid.Column width={3}>
-          </Grid.Column>
-          <Grid.Column width={10}>
+        <Grid stackable colums='three' centered >
+          <br/>
+          <Grid.Row>
             <AddProductForm type='add' />
-            <br />
-            <Card.Group itemsPerRow={5}>
-              { this.getAllProducts() }
-            </Card.Group>
-          </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            { this.getAllProducts() }
+          </Grid.Row>
         </Grid>
       </div>
     )
