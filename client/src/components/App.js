@@ -46,8 +46,6 @@ class App extends Component {
 }
 
 
-//This is some code
-
 export default App;
 
 // Michael's comment is here!
