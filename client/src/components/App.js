@@ -44,6 +44,4 @@ class App extends Component {
 }
 
 
-//This is some code
-
 export default App;
