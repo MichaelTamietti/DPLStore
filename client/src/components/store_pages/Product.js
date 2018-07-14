@@ -5,7 +5,7 @@ import Placeholder from '../../images/placeholder.png';
 import { deleteProduct } from '../../actions/products';
 
 class Product extends Component {
-  state = { open: false, cart: [] }
+  state = { open: false, cart: []}
 
   show = () => this.setState({ open: true });
 
@@ -19,21 +19,20 @@ class Product extends Component {
 
     return (
       <Grid.Column>
-        <Reveal animated='move up'>
           <Reveal.Content visible>
-            <Image src={Placeholder} size='large'/>
+            <Image src={Placeholder} size='medium'/>
           </Reveal.Content>
           <Reveal.Content hidden>
             <Segment inverted padded='very' textAlign='center' tertiary onClick={this.show('blurring')}>
-              <Header>{name}</Header>
+              <Header style={styles.textSizing}>{name}</Header>
               <Header.Subheader>
                 ${price}
               </Header.Subheader>
             </Segment>
-            <Modal dimmer={dimmer} open={open} onClose={this.close}>
-              <Modal.Header>{name}</Modal.Header>
+            <Modal open={open} onClose={this.close}>
+              <Modal.Header >{name}</Modal.Header>
               <Modal.Content image>
-                <Image wrapped size='medium' src='Placeholder' />
+                <Image wrapped size='small' src='Placeholder' />
                 <Modal.Description>
                   <Header>{name}</Header>
                   <p>${price}</p>
@@ -43,15 +42,22 @@ class Product extends Component {
                 </Modal.Description>
               </Modal.Content>
               <Modal.Actions>
-                <Button>
+                {/* <Button>
                   <Icon name='in cart' />Add To Cart
-                </Button>
+                </Button> */}
+                <Button onClick={() => this.props.handleOnAdd(this.props.product)} >ADD</Button>
               </Modal.Actions>
             </Modal>
           </Reveal.Content>
-        </Reveal>
       </Grid.Column>
     )
+  }
+}
+
+let styles = {
+  textSizing: {
+    fontSize: '16px',
+    margin: '5px -15px',
   }
 }
 
