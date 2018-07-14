@@ -1,31 +1,30 @@
-sizes = ["large", "medium", "small"]
+Product.create(
+  name: "T-shirt",
+  price: 20.00,
+  description:"")
 
-10.times do
-    name = Faker::Commerce.product_name
-    price = Faker::Commerce.price
-    description = Faker::Commerce.color
-    style = Faker::Commerce.material
-    size = sizes
+Product.create(
+  name: "Hoodie",
+  price: 40.00,
+  description:"")
 
-    Product.create(
-      name: name,
-      price: price,
-      description: description,
-      style: style,
-      size: size
-    )
-end
+Product.create(
+  name: "Iphone-Case",
+  price: 10.00,
+  description:"")
 
-10.times do
-    name = Faker::Commerce.product_name
-    price = Faker::Commerce.price
-    description = Faker::Commerce.color
-    style = Faker::Commerce.material
+Product.create(
+  name: "Hat",
+  price: 15.00,
+  description:"")
 
-    Product.create(
-      name: name,
-      price: price,
-      description: description,
-      style: style,
-    )
-end
+Product.create(
+  name: "Womens-Top",
+  price: 20.00,
+  description:"")
+
+Product.create(
+  name: "Crewneck",
+  price: 30.00,
+  description:"")
+
