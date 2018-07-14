@@ -118,6 +118,14 @@ let styles = {
 }
   
 
+let styles = {
+  cartAlignment: {
+    paddingTop: '20px',
+  },
+
+}
+  
+
 const mapStateToProps = (state) => {
 return { products: state.products,
 productshow: state.products };
