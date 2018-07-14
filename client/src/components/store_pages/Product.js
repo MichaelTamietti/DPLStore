@@ -34,8 +34,7 @@ let styles = {
   textSizing: {
     fontSize: '16px',
     margin: '5px -15px',
-  },
-
+  }
 }
 
 export default connect()(Product);

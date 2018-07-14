@@ -116,6 +116,7 @@ let styles = {
     },
       
 }
+  
 
 const mapStateToProps = (state) => {
 return { products: state.products,
@@ -123,10 +124,10 @@ productshow: state.products };
 }
 
 function mapActionsToProps(dispatch) {
-return bindActionCreators({
-getProducts,
-addToCart
-}, dispatch);
+  return bindActionCreators({
+      getProducts,
+      addToCart
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(Products);
