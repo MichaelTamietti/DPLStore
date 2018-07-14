@@ -72,7 +72,7 @@ class Cart extends React.Component {
         }
 
         return (
-            null
+            <Header as="h4" textAlign="center">Your Cart Is Empty</Header>
         );
     }
 }
