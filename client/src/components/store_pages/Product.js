@@ -13,6 +13,9 @@ class Product extends Component {
     const { name, price, description, style, size, images } = this.props.product;
   
 
+
+    
+
     return (
       <Fragment>
           <Fragment>
