@@ -1,6 +1,7 @@
 "use strict";
 import React from 'react';
 import { Grid, Container, Label, Button, Segment, Card, Icon } from 'semantic-ui-react';
+import { connect } from 'react-redux'
 
 class CartItem extends React.Component {
 
@@ -41,4 +42,4 @@ class CartItem extends React.Component {
     }
 }
 
-export default CartItem;
+export default connect()(CartItem);

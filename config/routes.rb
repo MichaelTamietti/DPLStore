@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :products, except: [:new, :edit]
     resources :orders, except: [:new, :edit]
+    resources :charges
   end
   
   resources "contacts", only: [:create]
