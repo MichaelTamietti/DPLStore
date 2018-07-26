@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { handleLogout } from '../../actions/auth';
 import Logo from '../../images/DPL-Mark.png';
 
+
 const styles = {
   styleButton: {
     border: '2px solid #000000',
@@ -16,7 +17,7 @@ const styles = {
     textTransform: 'uppercase',
     letterSpacing: '2px',
   }
-}
+};
 
 class Footer extends Component {
 
@@ -30,13 +31,14 @@ class Footer extends Component {
     }
 
     return (
-      <Grid centered padded>
-        
-    
-        <a href='http://www.devpointlabs.com/' target='_blank' rel='noopener noreferrer'>
-          <Image src={Logo} size='large' wrapped />
-        </a>
-      </Grid>
+      <div className="ui centered segment">
+        <Grid centered padded>
+          <a href='http://www.devpointlabs.com/' target='_blank' rel='noopener noreferrer'>
+            <Image src={Logo} size='medium' wrapped />
+          </a>
+        </Grid>
+      </div>
+       
     );
   }
 

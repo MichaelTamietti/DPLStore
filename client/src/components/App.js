@@ -8,7 +8,7 @@ import Flash from './Flash';
 import Products from './store_pages/Products';
 import Cart from './store_pages/Cart';
 import Checkout from './store_pages/Checkout';
-import Contact from './store_pages/Contact';
+import AboutUs from './store_pages/AboutUs';
 import Dashboard from './admin_pages/Dashboard';
 import FetchProducts from './admin_pages/FetchProducts';
 import Orders from './admin_pages/Orders';
@@ -30,7 +30,7 @@ class App extends Component {
             <Route exact path='/' component={Products} />
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/checkout' component={Checkout} />
-            <Route exact path='/contact' component={Contact} />
+            <Route exact path='/AboutUs' component={AboutUs} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
             <ProtectedRoute exact path='/dashboard' component={Dashboard} />

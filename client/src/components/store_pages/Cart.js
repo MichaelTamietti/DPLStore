@@ -64,6 +64,8 @@ class Cart extends React.Component {
         
         }, 0);
     }
+    roundToTwo = (number) => {
+        return number.toFixed(2)}
 
     roundToTwo = (number) => {
         return number.toFixed(2)}
