@@ -27,7 +27,6 @@ class App extends Component {
         <FetchUser>
           <Switch>
             <Route exact path='/' component={Products} />
-            <Route path='/product/:id' component={Tshirt} />
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/checkout' component={Checkout} />
             <Route exact path='/contact' component={Contact} />

@@ -26,19 +26,6 @@ class Product extends Component {
           </Fragment>
       </Fragment>
          
-
-              // <Header >{name}</Header>
-              //   <Image src={images} size='medium'/>
-              //     <Header>{name}</Header>
-              //     <p>${price}</p>
-              //     <p>{description}</p>
-              //     <p>Style: {style}</p>
-              //     <p>Sizes: {size}</p>
-           
-              
-              //   <Button onClick={() => this.props.handleOnAdd(this.props.product)} >ADD</Button>
-            
-     
     )
   }
 }

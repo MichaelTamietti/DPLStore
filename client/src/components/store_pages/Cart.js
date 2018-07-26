@@ -49,11 +49,9 @@ class Cart extends React.Component {
     cartTotal() {
         return (
             <Fragment>
-                {/* <Grid.Row>
-                    <Grid.Column> */}
+              
                         <h3>TOTAL: ${this.totalAmount(this.props.cart)}</h3>
-                    {/* </Grid.Column>
-                </Grid.Row> */}
+            
             </Fragment>
         );
     }
