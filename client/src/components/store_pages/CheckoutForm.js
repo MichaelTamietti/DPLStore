@@ -4,16 +4,10 @@ import axios from 'axios'
 import AddressSection from './AddressSection';
 import CCSection from './CCSection';
 import ContactSection from './ContactSection';
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Header, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class CheckoutForm extends React.Component {
-
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {complete: false};
-  //   this.submit = this.submit.bind(this);
-  // }
 
   state = { 
     complete: false, 
@@ -32,10 +26,6 @@ class CheckoutForm extends React.Component {
 
   handleEmailChange = (e) => {
     this.setState({customerEmail: e.target.value});
-  }
-
-  handleAmountChange = (e) => {
-    this.setState({amount: e.target.value});
   }
 
   handleAddressChange = (e) => {
@@ -63,11 +53,7 @@ class CheckoutForm extends React.Component {
     let stringAddress2 = JSON.stringify(customerAdditionalAddress)
     let stringCity = JSON.stringify(customerCity)
     let stringState = JSON.stringify(customerWhichState)
-    // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
-
-    // Within the context of `Elements`, this call to createToken knows which Element to
-    // tokenize, since there's only one in this group.
 
     this.props.stripe.createToken({ 
         type: 'card', 
@@ -79,50 +65,41 @@ class CheckoutForm extends React.Component {
       })
         .then(({token}) => {
       this.submit();
-      console.log(token)
-      console.log('token ^')
     });
 
-    // However, this line of code will do the same thing:
-    //
-    // this.props.stripe.createToken({type: 'card', name: 'Jenny Rosen'});
 
-    // You can also use createSource to create Sources. See our Sources
-    // documentation for more: https://stripe.com/docs/stripe-js/reference#stripe-create-source
-    //
-    // this.props.stripe.createSource({type: 'card', name: 'Jenny Rosen'});
   };
 
-
-  // async submit(ev) {
-  //   console.log("round 2 submit")
-  //   let {token} = await this.props.stripe.createToken({name: "Name"});
-  //   debugger
-  //   let response = await fetch("/charge", {
-  //     method: "POST",
-  //     headers: {"Content-Type": "text/plain"},
-  //     body: {stripeToken: token.id, stripeEmail: this.state.customerEmail, stripeAmount: this.state.amount}
-  //   });
-      
-  //   if (response.ok) console.log("Purchase Complete!")
-  //   if (response.ok) this.setState({complete: true});
-  // }
-
-
   async submit(ev) {
+
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth()+1; //January is 0!
+    let yyyy = today.getFullYear();
+
+    if(dd<10) {
+      dd = '0'+dd
+    } 
+
+    if(mm<10) {
+      mm = '0'+mm
+    } 
+
+    today = mm + '/' + dd + '/' + yyyy;
   
     let stringCustomerEmail = JSON.stringify(this.state.customerEmail)
-    let centAmount = this.state.amount * 100
+    let centAmount = this.totalAmount(this.props.cart) * 100
 
     let { token } = await this.props.stripe.createToken({ name: "DPL Store Charge" })
     let response = await axios.post("/api/charges", {
       stripeToken: token.id, 
-      stripeEmail: this.state.customerEmail, 
+      stripeEmail: stringCustomerEmail, 
       stripeAmount: centAmount 
     })
-    .then( function (response) {
-      console.log(response)
-      alert('Complete! Thanks for your purchase!')
+    .then( () => {
+      this.setState({ complete: true })
+      this.setState({ transactionDate: today })
+      this.props.func()
     })
     .catch(function (error) {
       console.log(error)
@@ -130,7 +107,6 @@ class CheckoutForm extends React.Component {
   }
 
   stripeTokenHandler = (token) => {
-    // Insert the token ID into the form so it gets submitted to the server
     var form = document.getElementById('payment-form');
     var hiddenInput = document.createElement('input');
     hiddenInput.setAttribute('type', 'hidden');
@@ -138,28 +114,53 @@ class CheckoutForm extends React.Component {
     hiddenInput.setAttribute('value', token.id);
     form.appendChild(hiddenInput);
   
-    // Submit the form
     form.submit();
   }
 
+  totalAmount(cartArray) {
+    return cartArray.reduce((acum, item) => {
+        acum += item.price * item.units;
+        return acum
+    }, 0);
+  }
+  
+  isDisabled = () => {
+    const { customerName, customerAddress, customerAdditionalAddress, customerCity, customerWhichState, customerEmail } = this.state
+
+    let stringName = JSON.stringify(customerName)
+    let stringEmail = JSON.stringify(customerEmail)
+    let stringAddress = JSON.stringify(customerAddress)
+    let stringAddress2 = JSON.stringify(customerAdditionalAddress)
+    let stringCity = JSON.stringify(customerCity)
+    let stringState = JSON.stringify(customerWhichState)
+
+    if (
+      this.stringName !== "" 
+      && this.stringEmail !== "" 
+      && this.stringAddress !== "" 
+      && this.stringAddress2 !== ""
+      && this.stringcustomerCity !== ""
+      && this.stringState !== ""
+    )
+      return false
+  }
+
   render() {
-    console.log("chckout form")
-    console.log(this.props)
-    if (this.state.complete) return <h1>Purchase Complete</h1>;
     return (
-      <Form >
+      <Form>
         <ContactSection 
           handleEmailChange={this.handleEmailChange} 
           handleNameChange={this.handleNameChange}
         />
         <AddressSection 
-          handleAmountChange={this.handleAmountChange} 
           handleAddressChange={this.handleAddressChange} 
           handleAdditionalAddressChange={this.handleAdditionalAddressChange} 
           handleCityChange={this.handleCityChange} 
           handleWhichStateChange={this.handleWhichStateChange}
         />
-        <CCSection />
+        <br />
+        <CCSection/>
+        <br />
         <Button type="submit" onClick={this.handleSubmit}>Purchase</Button>
       </Form>
     );
@@ -167,7 +168,9 @@ class CheckoutForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { };
+  return {
+    cart: state.cart
+  }
 }
 
 export default connect(mapStateToProps)(injectStripe(CheckoutForm));

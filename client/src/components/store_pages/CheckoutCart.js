@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux'
 import {connect} from 'react-redux';
 import {deleteFromCart, updateItemUnits} from '../../actions/cartActions';
-import CartItem from "./CartItem";
-import { Grid, Label, Header, Button, Segment, Card, Icon } from 'semantic-ui-react';
+import CheckoutCartItem from "./CheckoutCartItem";
+import { Grid, Label, Header, Button, Segment, Card, Image } from 'semantic-ui-react';
 
 class CheckoutCart extends React.Component {
+
+
     renderCart() {
         return (
-            <Segment className='cartList' header='Cart' bsStyle='primary'>
+            <Segment>
               <Header as="h2" textAlign="center" >Your Cart</Header>
                 {this.cartList()}
             </Segment>
@@ -31,32 +33,46 @@ class CheckoutCart extends React.Component {
       return (
         this.props.cart.map(cartItem => {
           return (
-            <CartItem key={cartItem.id}
-              cartItem={cartItem}
-              onAddUnit={this.handleAddUnit.bind(this, cartItem.id)}
-              onDeductUnit={this.handleDeductUnit.bind(this, cartItem.id)}
-              handleDeleteFromCart={this.handleDeleteFromCart.bind(this, cartItem.id)}
-            />
+            <Grid>
+              <Grid.Row columns={4}>
+                <Grid.Column>
+                  <CheckoutCartItem 
+                    key={cartItem.id}
+                    cartItem={cartItem}
+                    onAddUnit={this.handleAddUnit.bind(this, cartItem.id)}
+                    onDeductUnit={this.handleDeductUnit.bind(this, cartItem.id)}
+                    handleDeleteFromCart={this.handleDeleteFromCart.bind(this, cartItem.id)}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
           );
         })
       );
     }
 
+    // taxAmount = (itemTotal) => {
+    //   const tax = 6.875%
+    //   lettotal = itemTotal * tax
+    //   return total
+    // }
+
     cartTotal() {
         return (
             <Segment>
                 <Grid.Row>
-                    <Grid.Column columns={2}>
+                    <Grid.Column columns={3}>
                         <h3>TOTAL: ${this.totalAmount(this.props.cart)}</h3>
                     </Grid.Column>
                 </Grid.Row>
             </Segment>
         );
     }
+
     totalAmount(cartArray) {
         return cartArray.reduce((acum, item) => {
             acum += item.price * item.units;
-            return acum;
+            return acum
         }, 0);
     }
 
@@ -80,7 +96,8 @@ class CheckoutCart extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        cart: state.cart
+        cart: state.cart,
+        product: state.products
     }
 }
 function mapActionsToProps(dispatch) {
