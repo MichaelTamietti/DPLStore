@@ -9,7 +9,6 @@ class AddressSection extends React.Component {
         <Form.Input label="Additional Address" placeholder="Additional Address" onChange={this.props.handleAdditionalAddressChange}/>
         <Form.Input required label="City" placeholder="City" onChange={this.props.handleCityChange}/>
         <Form.Input required label="State" placeholder="State" onChange={this.props.handleWhichStateChange}/>
-        <Form.Input required type="number" label="Amount" placeholder="Amount" onChange={this.props.handleAmountChange}/>
       </Form>
     );
   }
