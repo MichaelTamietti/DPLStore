@@ -32,19 +32,9 @@ class Footer extends Component {
     return (
       <Grid centered padded>
         
-        <Grid.Row>
-          <a href='https://www.facebook.com/DevPointLabs/' target='_blank' rel='noopener noreferrer'>
-            <Icon name='facebook square' link size='huge' />
-          </a>
-          <a href='https://twitter.com/devpointlabs?lang=en' target='_blank' rel='noopener noreferrer'>
-            <Icon name='twitter square' link size='huge' />
-          </a>
-          <a href='https://www.instagram.com/devpointlabs/' target='_blank' rel='noopener noreferrer'>
-            <Icon name='instagram' link size='huge' />
-          </a>
-        </Grid.Row>
+    
         <a href='http://www.devpointlabs.com/' target='_blank' rel='noopener noreferrer'>
-          <Image src={Logo} size='big' wrapped />
+          <Image src={Logo} size='large' wrapped />
         </a>
       </Grid>
     );
@@ -52,7 +42,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <div>
+      <div className='footerSpace'>
         { this.ifAdminFooter() }
       </div>
     );
