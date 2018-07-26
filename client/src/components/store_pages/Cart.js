@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux'
 import {connect} from 'react-redux';
@@ -7,12 +7,15 @@ import CartItem from "./CartItem";
 import { Grid, Label, Header, Button, Segment, Card, Icon } from 'semantic-ui-react';
 
 class Cart extends React.Component {
+
+   state = {  randomNumber: 0}
+
     renderCart() {
         return (
-            <Segment className='cartList' header='Cart' bsStyle='primary'>
+            <div className='cartList' header='Cart' bsStyle='primary'>
               <Header as="h2" textAlign="center" >Your Cart</Header>
                 {this.cartList()}
-            </Segment>
+            </div>
         );
     }
     handleDeleteFromCart(id) {
@@ -26,6 +29,7 @@ class Cart extends React.Component {
         let units = 1;
         this.props.updateItemUnits({id, units})
     }
+  
 
     cartList() {
       return (
@@ -44,13 +48,13 @@ class Cart extends React.Component {
 
     cartTotal() {
         return (
-            <Segment>
-                <Grid.Row>
-                    <Grid.Column columns={2}>
+            <Fragment>
+                {/* <Grid.Row>
+                    <Grid.Column> */}
                         <h3>TOTAL: ${this.totalAmount(this.props.cart)}</h3>
-                    </Grid.Column>
-                </Grid.Row>
-            </Segment>
+                    {/* </Grid.Column>
+                </Grid.Row> */}
+            </Fragment>
         );
     }
     totalAmount(cartArray) {
@@ -72,10 +76,12 @@ class Cart extends React.Component {
         }
 
         return (
-            <Header as="h4" textAlign="center">Your Cart Is Empty</Header>
+         <Header as="h4" textAlign="center">Your Cart Is Empty</Header>
+        
         );
     }
 }
+
 
 function mapStateToProps(state) {
     return {

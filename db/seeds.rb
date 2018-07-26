@@ -21,14 +21,14 @@ crewneck = [
 Product.create(
   name: "T-shirt",
   price: 20.00,
-  description:"",
+  description:"This 100% cotton t-shirt is comfortable and perfect for any occasion. Most popular choice from this season’s Greyscale Collection.",
   images: tshirt
    )
 
 Product.create(
   name: "Hoodie",
   price: 40.00,
-  description:"",
+  description:"This comfortable hoodie is made from the finest cotton. Great choice from our Greyscale Collection.",
   images: hoodie
   
   )
@@ -36,7 +36,7 @@ Product.create(
 Product.create(
   name: "Iphone-Case",
   price: 10.00,
-  description:"",
+  description:"This phone case will keep your iPhone safe and scratch-free. More colors coming up soon!",
   images: iphone
   
   )
@@ -44,7 +44,7 @@ Product.create(
 Product.create(
   name: "Hat",
   price: 15.00,
-  description:"",
+  description:"The hat includes an original, screen printed graphic. Not to be missed!",
   images: hat
  
   )
@@ -52,7 +52,7 @@ Product.create(
 Product.create(
   name: "Top",
   price: 20.00,
-  description:"",
+  description:"New top in our Greyscale Collection, perfect for the summer days in Salt Lake City!",
   images: top
   
   )
@@ -60,7 +60,7 @@ Product.create(
 Product.create(
   name: "Crewneck",
   price: 30.00,
-  description:"",
+  description:"Relaxed and comfortable fashion, perfect for any weather.",
   images: crewneck
   )
 
