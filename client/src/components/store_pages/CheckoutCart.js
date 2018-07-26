@@ -72,9 +72,13 @@ class CheckoutCart extends React.Component {
     totalAmount(cartArray) {
         return cartArray.reduce((acum, item) => {
             acum += item.price * item.units;
-            return acum
+            acum = this.roundToTwo(acum)
+            return acum;
         }, 0);
     }
+        roundToTwo = (number) => {
+            return number.toFixed(2)}
+    
 
     render() {
         if (this.props.cart.length !== 0) {
