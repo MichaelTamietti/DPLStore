@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Segment } from 'semantic-ui-react';
+import { Container, Header, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux'
 import CheckoutCart from './CheckoutCart'
 import {Elements} from 'react-stripe-elements';
@@ -30,15 +30,15 @@ class Checkout extends Component {
     } else {
 
       return (
-        <Segment>
-          <Header as='h1' textAlign='center'>Checkout</Header>
+        <Container>
+          <Header as='h1' textAlign='center' style={styles.checkoutTitle} >Checkout</Header>
           <CheckoutCart />
           <br />
           <Header as='h2' textAlign='center'>Please Enter Your Information Below</Header>
           <Elements>
             <InjectedCheckoutForm  func={this.completedOrder}/>
           </Elements>
-        </Segment>
+        </Container>
       );
     }
 
@@ -50,5 +50,11 @@ function mapStateToProps(state) {
     cart: state.cart
   };
 }
+
+let styles = {
+  checkoutTitle: {
+      marginTop: '50px',
+      },
+    }
 
 export default connect(mapStateToProps)(Checkout);

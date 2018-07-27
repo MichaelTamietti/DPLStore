@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Rail, Reveal, Icon, Segment, Button, Card, Container, Grid, Loader } from 'semantic-ui-react';
+import { Header, Rail, Reveal, Icon, Segment, Button, Card, Container, Grid, Loader } from 'semantic-ui-react';
 import Product from './Product';
 import { getProducts } from '../../actions/products';
 import Cart from './Cart'
@@ -57,25 +57,28 @@ return products.map((product, index) => (
 render() {
 if (this.state.loaded) {
 return (
-
-<Container style={styles.itemsSpace}>
+<div>
+<Container textAlign='center'>
     <Grid>
             <Grid.Row columns={3}>
                 {this.getAllProducts()}
             </Grid.Row>
     </Grid>
+    </Container>
     
     <Rail attached internal position='right' style={styles.cartCounter}>
-            <Link to='/Cart'>
-                <Segment> <Icon name='shopping cart' /> Cart: {this.state.itemNumber} </Segment>
-            </Link>
+            <Header> <Link to='/Cart' className='sCartCounter'>
+                <Segment > <Icon className='sCartCounter' name='shopping cart' /> Cart: {this.state.itemNumber} </Segment>
+            </Link> </Header>
     </Rail>
+
+     <Container>    
+    <div style={styles.cartAlignment}>
+            <Cart/>
+    </div>
+    </Container>
          
-    <Segment>
-            <Cart style={styles.cartAlignment}/>
-    </Segment>
-         
-</Container>
+</div>
 
 
 )
@@ -93,7 +96,8 @@ return (
 
 let styles = {
     cartAlignment: {
-    paddingTop: '40px',
+    marginTop: '100px',
+    marginBottom: '100px',
     },
     organizeCards: {
     
@@ -108,12 +112,9 @@ let styles = {
         width: '140px',
         textAlign: 'center'
     },
-    itemsSpace: {
-        margin: '20px auto',
-    },
     cartCounter: {
-        marginTop: '100px',
-        marginRight: '200px',
+        marginTop: '220px',
+        marginRight: '150px',
         width: 'auto',
     },
       

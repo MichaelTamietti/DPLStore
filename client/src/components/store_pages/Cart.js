@@ -4,16 +4,17 @@ import { bindActionCreators } from 'redux'
 import {connect} from 'react-redux';
 import {deleteFromCart, updateItemUnits} from '../../actions/cartActions';
 import CartItem from "./CartItem";
-import { Grid, Label, Header, Button, Segment, Card, Icon } from 'semantic-ui-react';
+import { Container, Grid, Label, Header, Button, Segment, Card, Icon } from 'semantic-ui-react';
 
 class Cart extends React.Component {
+
 
    state = {  randomNumber: 0}
 
     renderCart() {
         return (
-            <div className='cartList' header='Cart' bsStyle='primary'>
-              <Header as="h2" textAlign="center" >Your Cart</Header>
+            <div style={styles.cartAlignment} className='cartList' header='Cart' bsStyle='primary'>
+             
                 {this.cartList()}
             </div>
         );
@@ -48,37 +49,36 @@ class Cart extends React.Component {
 
     cartTotal() {
         return (
-            <Fragment>
+            <Container textAlign='right' >
               
-                        <h3>TOTAL: ${this.totalAmount(this.props.cart)}</h3>
+                        <h3 style={styles.checkoutTotal}>TOTAL: ${this.totalAmount(this.props.cart)}</h3>
             
-            </Fragment>
+            </Container>
         );
     }
     totalAmount(cartArray) {
         
         return cartArray.reduce((acum, item) => {
             acum += item.price * item.units;
-            acum = this.roundToTwo(acum)
             return acum;
         
         }, 0);
     }
-    roundToTwo = (number) => {
-        return number.toFixed(2)}
-
-    roundToTwo = (number) => {
-        return number.toFixed(2)}
 
 
     render() {
         if (this.props.cart.length !== 0) {
             return (
+              <Container style={styles.cartContainer}>
                 <aside className='cart'>
                     {this.renderCart()}
                     {this.cartTotal()}
-                  <Button><Link to="/checkout">Checkout</Link></Button>
+                    <Container>
+                  <Button floated='right'><Link to="/checkout">Checkout</Link></Button>
+                  </Container>
                 </aside>
+                </Container>
+                
             );
         }
 
@@ -87,6 +87,27 @@ class Cart extends React.Component {
         
         );
     }
+}
+
+let styles = {
+    cartAlignment: {
+    marginTop: '50px',
+    marginBottom: '10px',
+    },
+    checkoutButton: {
+        marginRight: '50px',
+        marginBottom: '20px',
+        },
+    checkoutTotal: {
+             marginBottom: '10px',
+            marginRight: '10px'
+            },
+    cartContainer: {
+            marginBottom: '100px',
+       
+               },
+
+ 
 }
 
 

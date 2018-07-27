@@ -4,17 +4,17 @@ import { bindActionCreators } from 'redux'
 import {connect} from 'react-redux';
 import {deleteFromCart, updateItemUnits} from '../../actions/cartActions';
 import CheckoutCartItem from "./CheckoutCartItem";
-import { Grid, Label, Header, Button, Segment, Card, Image } from 'semantic-ui-react';
+import { Container, Grid, Label, Header, Button, Segment, Card, Image } from 'semantic-ui-react';
 
 class CheckoutCart extends React.Component {
 
 
     renderCart() {
         return (
-            <Segment>
-              <Header as="h2" textAlign="center" >Your Cart</Header>
+            <Container>
+              <Header as="h4" textAlign="center" >Your Cart</Header>
                 {this.cartList()}
-            </Segment>
+            </Container>
         );
     }
     handleDeleteFromCart(id) {
@@ -33,9 +33,9 @@ class CheckoutCart extends React.Component {
       return (
         this.props.cart.map(cartItem => {
           return (
-            <Grid>
-              <Grid.Row columns={4}>
-                <Grid.Column>
+           
+       
+            <Container>
                   <CheckoutCartItem 
                     key={cartItem.id}
                     cartItem={cartItem}
@@ -43,9 +43,8 @@ class CheckoutCart extends React.Component {
                     onDeductUnit={this.handleDeductUnit.bind(this, cartItem.id)}
                     handleDeleteFromCart={this.handleDeleteFromCart.bind(this, cartItem.id)}
                   />
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
+                  </Container>
+        
           );
         })
       );
@@ -59,25 +58,20 @@ class CheckoutCart extends React.Component {
 
     cartTotal() {
         return (
-            <Segment>
-                <Grid.Row>
-                    <Grid.Column columns={3}>
+            <Container textAlign='right'>
+         
                         <h3>TOTAL: ${this.totalAmount(this.props.cart)}</h3>
-                    </Grid.Column>
-                </Grid.Row>
-            </Segment>
+                
+            </Container>
         );
     }
 
     totalAmount(cartArray) {
         return cartArray.reduce((acum, item) => {
             acum += item.price * item.units;
-            acum = this.roundToTwo(acum)
             return acum;
         }, 0);
     }
-        roundToTwo = (number) => {
-            return number.toFixed(2)}
     
 
     render() {
