@@ -31,10 +31,10 @@ class Footer extends Component {
     }
 
     return (
-      <div className="ui centered segment">
+      <div >
         <Grid centered padded>
           <a href='http://www.devpointlabs.com/' target='_blank' rel='noopener noreferrer'>
-            <Image src={Logo} size='medium' wrapped />
+            <Image src={Logo} size='small' wrapped />
           </a>
         </Grid>
       </div>
