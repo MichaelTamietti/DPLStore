@@ -45,25 +45,6 @@ class CartItem extends React.Component {
           </Grid>
           <Divider />
             </div>
-   
- 
-            // <Image src={this.props.cartItem.images} size='small' />
-            //                 <h4>{this.props.cartItem.name}</h4>
-            //                 <div>Price: ${this.props.cartItem.price}</div>
-                  
-            //             <p>Quantity :&nbsp;
-            //                 <Label bsStyle='success'> {this.props.cartItem.units} </Label>
-            //                 &nbsp;
-            //                 <Button onClick={() => this.props.onAddUnit()}>+</Button>
-            //                 <Button onClick={() => this.props.onDeductUnit()}>-</Button>
-            //             </p>
-                     
-            //             <Button onClick={() => this.props.handleDeleteFromCart()}
-            //                     >Remove Item</Button>
-                    
-
-             
-          
         );
 
 
