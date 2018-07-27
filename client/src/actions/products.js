@@ -19,11 +19,6 @@ export const addProduct = (product) => {
     Object.keys(product).forEach( key => {
       formData.append(key, product[key])
     })
-    // product.files.forEach( file => {
-    //   console.log(file)
-    //   formData.append(file.name, file)
-    // })
-    // console.log(formData)
 
    axios.post(`/api/products`, formData, axiosConfigs)
     .then( ({ data, headers }) => {

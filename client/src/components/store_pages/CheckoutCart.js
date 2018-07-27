@@ -50,12 +50,6 @@ class CheckoutCart extends React.Component {
       );
     }
 
-    // taxAmount = (itemTotal) => {
-    //   const tax = 6.875%
-    //   lettotal = itemTotal * tax
-    //   return total
-    // }
-
     cartTotal() {
         return (
             <Container textAlign='right'>
