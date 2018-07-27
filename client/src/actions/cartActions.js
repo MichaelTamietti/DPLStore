@@ -7,7 +7,7 @@ export function addToCart({id, name, description, price, images, units=1}) {
     return {
         type: ADD_TO_CART,
         payload: {id, name, description, price, units, images }
-}
+}}
 export function deleteFromCart({id}) {
     return {
         type: DELETE_FROM_CART,
